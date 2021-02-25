@@ -26,9 +26,11 @@ dependencies:
   cupertino_icons: ^1.0.1
   flutter_bloc: ^6.1.1
   shared_preferences: ^0.5.12+4
+  conditional_builder: ^1.0.2
   dio: ^3.0.10
   fluttertoast: ^7.1.6
   get: ^3.24.0
+  flutter_spinkit: ^4.1.2
   google_fonts: ^1.1.2
   firebase_core: ^0.7.0
   google_sign_in: ^4.5.9

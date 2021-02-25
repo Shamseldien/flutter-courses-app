@@ -30,7 +30,7 @@ class Result {
   int from;
   int lastPage;
   String lastPageUrl;
-  String nextPageUrl;
+  dynamic nextPageUrl;
   String path;
   int perPage;
   dynamic prevPageUrl;
@@ -110,7 +110,7 @@ class Data {
   String free;
   String createdAt;
   String updatedAt;
-  Null deletedAt;
+  dynamic deletedAt;
   String image;
 
   Data(

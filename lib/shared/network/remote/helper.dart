@@ -12,6 +12,7 @@ class DioHelper {
   static Future<Response> getData({
     path,
     data,
+    query,
     token,
   }) async {
     if (token != null) {
@@ -23,6 +24,7 @@ class DioHelper {
     return await dio.post(
       path,
       data: data ?? null,
+      queryParameters: query??null
 
     );
   }

@@ -1,4 +1,7 @@
+import 'package:courses_app/models/courses_model.dart';
+import 'package:courses_app/models/single_course_model.dart';
 import 'package:courses_app/modules/authentication/registration/registration_screen.dart';
+import 'package:courses_app/modules/single_course/single_course.dart';
 import 'package:courses_app/modules/splash/bloc/cubit.dart';
 import 'package:courses_app/modules/welcome/welcome.dart';
 import 'package:courses_app/shared/const.dart';
@@ -9,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:courses_app/shared/styles/colors.dart';
 import 'package:courses_app/shared/styles/styles.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -314,7 +318,81 @@ Widget indicator({currentPage,context})=> Container(
   ),
 );
 
-
+Widget categoriesItems({Data data}) => Container(
+  decoration: BoxDecoration(
+    color: zeplinColors.white,
+    borderRadius: BorderRadius.circular(24),
+    boxShadow: [
+      BoxShadow(
+          color: Color(0x1a301d46),
+          offset: Offset(0, 7),
+          blurRadius: 30,
+          spreadRadius: 0)
+    ],
+  ),
+  child: Stack(
+    alignment: Alignment.center,
+    children: [
+      MaterialButton(
+        shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        onPressed: () {
+          Get.to(SingleCourse(
+            data.id
+          ));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 80,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(data.image,)
+                  )
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              data.title,
+              style: black16.copyWith(
+                letterSpacing: 2,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
+      ),
+      Positioned(
+        bottom: 0,
+        right: 0,
+        child: Container(
+          height: 30,
+          width: 80,
+          decoration: BoxDecoration(
+              color: zeplinColors.primaryDark,
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(24),
+                  topLeft: Radius.circular(24)
+              )
+          ),
+          child: Center(child: Text('${data.price} L:E',style: white14,)),
+        ),
+      )
+    ],
+  ),
+);
 Widget buildItem()=>Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(32),
@@ -392,5 +470,46 @@ Widget profileItem({color,text,icon,iconColor,coursesNum,avatarColor,textStyle =
         Text('$text',style: textStyle,textAlign: TextAlign.center,)
       ],
     )
+  ),
+);
+
+Widget loadingWidget()=>Center(
+  child:   SpinKitThreeBounce(
+
+    color: zeplinColors.primaryDark,
+
+    size: 30,
+
+  ),
+);
+Widget teachers(Teacher teacher)=> Padding(
+  padding:  EdgeInsets.symmetric(vertical: 5),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      CircleAvatar(
+        radius: 30,
+        backgroundImage: NetworkImage(teacher.image),
+      ),
+      SizedBox(
+        width: 10,
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text('${teacher.firstName} ${teacher.lastName} ',style: black16,),
+              SizedBox(
+                width: 5,
+              ),
+             if(teacher.active)
+               Icon(Icons.verified,color: Colors.blue,size: 20,)
+            ],
+          ),
+          Text(teacher.email,style: black12,),
+        ],
+      ),
+    ],
   ),
 );

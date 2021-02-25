@@ -28,6 +28,11 @@ TextStyle black18 = TextStyle(
     color: zeplinColors.dark
 );
 
+TextStyle black20 = TextStyle(
+    fontSize: 20,
+    color: zeplinColors.dark
+);
+
 TextStyle grey28 = TextStyle(
     fontSize: 28,
   color: zeplinColors.grey

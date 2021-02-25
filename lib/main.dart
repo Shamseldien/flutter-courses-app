@@ -6,6 +6,7 @@ import 'package:courses_app/modules/authentication/registration/bloc/cubit.dart'
 import 'package:courses_app/modules/authentication/registration/registration_screen.dart';
 import 'package:courses_app/modules/courses_categories/bloc/cubit.dart';
 import 'package:courses_app/modules/profile/bloc/cubit.dart';
+import 'package:courses_app/modules/single_course/bloc/cubit.dart';
 import 'package:courses_app/modules/splash/bloc/cubit.dart';
 import 'package:courses_app/modules/splash/splash_scsreen.dart';
 import 'package:courses_app/modules/welcome/bloc/cubit.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context)=>HomeCubit()),
           BlocProvider(create: (context)=>WelcomeCubit()),
           BlocProvider(create: (context)=>CoursesCategoriesCubit()),
+          BlocProvider(create: (context)=>SingleCourseCubit()),
           BlocProvider(create: (context)=>ProfileCubit()..getUserInfo()),
         ],
         child: GetMaterialApp(
