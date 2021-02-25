@@ -27,7 +27,6 @@ class HomeLayout extends StatelessWidget {
           ),
           bottomNavigationBar: Container(
             clipBehavior: Clip.antiAlias,
-            height: 60,
             width: double.infinity,
             decoration: BoxDecoration(
               color: zeplinColors.white,

@@ -13,12 +13,12 @@ class SingleCourseCubit extends Cubit<SingleCourseStates>{
 
 Course data;
 SingleCourseModel model;
-Course courseDetails = new Course();
+Course courseDetails ;
 
 bool isExpanded = false;
-  getCourseDetails({courseId}){
+  Future getCourseDetails({courseId}){
     emit(SingleCourseLoadingState());
-    DioHelper.getData(
+  return  DioHelper.getData(
       path: SINGLE_COURSE_END_POINT,
       token: getToken(),
       data: null,
@@ -26,7 +26,6 @@ bool isExpanded = false;
         'course_id':courseId
       }
     ).then((value){
-    //  print(value.data['result']['course']['title']);
       model =SingleCourseModel.fromJson(jsonDecode(value.toString()));
       courseDetails = model.result.course;
       print(courseDetails.title);
